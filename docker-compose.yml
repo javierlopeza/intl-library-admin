@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: intl_library_admin
+    environment:
+      - APPLICATION_PORT=3310
+      - DATABASE_URL=postgres://javierlopez@host.docker.internal:5432/intllibrary_dev
+      - DATABASE_SCHEMA=public
+      - DATABASE_SSL=false
+      - FOREST_AUTH_SECRET=d0b6804d63ec41bf8800a262cedae61b60405f5a3854e9c4d12408a6917e70297ebaf9a9b7638c1de32a237329389526
+      - FOREST_ENV_SECRET=27d4f797a682528b4b2f0a6e2741a8a61cbda002d771fbcfb674600295b5f0a5
+    ports:
+      - "3310:3310"
+    volumes:
+      - ./:/usr/src/app
