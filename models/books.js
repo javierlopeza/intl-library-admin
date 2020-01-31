@@ -5,10 +5,16 @@ module.exports = (sequelize, DataTypes) => {
   // This section contains the fields of your model, mapped to your table's columns.
   // Learn more here: https://docs.forestadmin.com/documentation/v/v5/reference-guide/models/enrich-your-models#declaring-a-new-field-in-a-model
   const Books = sequelize.define('Books', {
+    bookFormat: {
+      type: DataTypes.STRING,
+    },
     datePublished: {
       type: DataTypes.DATE,
     },
     description: {
+      type: DataTypes.STRING,
+    },
+    goodreadsUrl: {
       type: DataTypes.STRING,
     },
     imageUrl: {
@@ -16,6 +22,21 @@ module.exports = (sequelize, DataTypes) => {
     },
     isbn: {
       type: DataTypes.STRING,
+    },
+    language: {
+      type: DataTypes.STRING,
+    },
+    pages: {
+      type: DataTypes.INTEGER,
+    },
+    publisher: {
+      type: DataTypes.STRING,
+    },
+    ratingAverage: {
+      type: DataTypes.INTEGER,
+    },
+    ratingCount: {
+      type: DataTypes.INTEGER,
     },
     title: {
       type: DataTypes.STRING,
