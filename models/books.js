@@ -5,22 +5,31 @@ module.exports = (sequelize, DataTypes) => {
   // This section contains the fields of your model, mapped to your table's columns.
   // Learn more here: https://docs.forestadmin.com/documentation/v/v5/reference-guide/models/enrich-your-models#declaring-a-new-field-in-a-model
   const Books = sequelize.define('Books', {
-    bookFormat: {
-      type: DataTypes.STRING,
-    },
     datePublished: {
       type: DataTypes.DATE,
     },
     description: {
       type: DataTypes.STRING,
     },
-    goodreadsUrl: {
-      type: DataTypes.STRING,
-    },
     imageUrl: {
       type: DataTypes.STRING,
     },
+    title: {
+      type: DataTypes.STRING,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+    },
     isbn: {
+      type: DataTypes.STRING,
+    },
+    bookFormat: {
+      type: DataTypes.STRING,
+    },
+    goodreadsUrl: {
       type: DataTypes.STRING,
     },
     language: {
@@ -33,19 +42,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     ratingAverage: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DOUBLE,
     },
     ratingCount: {
       type: DataTypes.INTEGER,
-    },
-    title: {
-      type: DataTypes.STRING,
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
     },
   }, {
     tableName: 'Books',
@@ -60,6 +60,11 @@ module.exports = (sequelize, DataTypes) => {
         field: 'authorId',
       },
       as: 'author',
+    });
+    Books.belongsToMany(models.Genres, {
+      through: 'BookGenres',
+      foreignKey: 'bookId',
+      otherKey: 'genreId',
     });
   };
 
